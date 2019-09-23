@@ -1,3 +1,22 @@
+# How to run the application with Cinnamon locally
+
+1. Run the application with Cinnamon
+    ```bash
+    ./run-app-with-cinnamon
+    ```
+
+2. Send some test queries
+    ```bash
+    ./run-some-queries
+    ```
+
+3. Get Akka Persistence metrics
+    ```bash
+    curl localhost:9001 | grep entity 
+    ```
+
+---
+
 # Mixed Persistence Service
 
 This recipe demonstrates how to create a service in Lagom for Java that uses Cassandra for write-side persistence and JPA for a read-side view.

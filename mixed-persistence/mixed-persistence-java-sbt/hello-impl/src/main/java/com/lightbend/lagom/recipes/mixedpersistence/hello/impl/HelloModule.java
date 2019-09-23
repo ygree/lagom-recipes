@@ -6,6 +6,8 @@ import com.lightbend.lagom.internal.javadsl.persistence.jdbc.JdbcReadSideImpl;
 import com.lightbend.lagom.internal.javadsl.persistence.jdbc.JdbcSessionImpl;
 import com.lightbend.lagom.internal.javadsl.persistence.jdbc.SlickProvider;
 import com.lightbend.lagom.internal.persistence.jdbc.SlickOffsetStore;
+import com.lightbend.lagom.javadsl.api.ServiceLocator;
+import com.lightbend.lagom.javadsl.client.ConfigurationServiceLocator;
 import com.lightbend.lagom.javadsl.persistence.jdbc.JdbcReadSide;
 import com.lightbend.lagom.javadsl.persistence.jdbc.JdbcSession;
 import com.lightbend.lagom.javadsl.server.ServiceGuiceSupport;
@@ -28,5 +30,8 @@ public class HelloModule extends AbstractModule implements ServiceGuiceSupport {
         // To use JdbcReadSide instead of JpaReadSide, uncomment these lines:
         // bind(JdbcReadSide.class).to(JdbcReadSideImpl.class);
         // bind(JdbcSession.class).to(JdbcSessionImpl.class);
+
+        // Only needed to allow the sample to run from test and dist with the config Service Locator
+        bind(ServiceLocator.class).to(ConfigurationServiceLocator.class);
     }
 }

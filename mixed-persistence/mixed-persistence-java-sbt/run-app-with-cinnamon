@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export IP_ADDR=$(ipconfig getifaddr en0)
+
+echo IP_ADDR=$IP_ADDR
+
+SBT_COMMAND="; lagomCassandraStart; hello-impl/test:runMain play.core.server.ProdServerStart"
+
+echo SBT_COMMAND=$SBT_COMMAND
+
+sbt "$SBT_COMMAND"

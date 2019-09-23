@@ -35,7 +35,19 @@ lazy val `hello-impl` = (project in file("hello-impl"))
   )
   .settings(lagomForkedTestSettings: _*)
   .dependsOn(`hello-api`)
-
+  // Cinnamon
+  .enablePlugins(Cinnamon)
+  .settings(
+    // Enable Cinnamon during tests
+    cinnamon in test := true,
+    // Add a play secret to javaOptions in run in Test, so we can run Lagom forked
+    javaOptions in (Test, run) += "-Dplay.http.secret.key=x",
+    libraryDependencies ++= Seq(
+      Cinnamon.library.cinnamonAkkaPersistence,
+      Cinnamon.library.cinnamonPrometheus,
+      Cinnamon.library.cinnamonPrometheusHttpServer
+    )
+  )
 
 def common = Seq(
   javacOptions in compile += "-parameters"
